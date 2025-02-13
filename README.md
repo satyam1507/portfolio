@@ -1,6 +1,6 @@
-# Personal Portfolio Website
+# Personal Portfolio 
 
-A clean, modern, and responsive portfolio website showcasing my professional experience, skills, and achievements.
+A clean, modern, responsive portfolio website showcasing my professional experience, skills, and achievements.
 
 ## 🌐 Live Demo
 
@@ -23,14 +23,6 @@ Visit my portfolio at: [https://satyam1507.github.io/portfolio](https://satyam15
 - Custom dark mode implementation
 - Responsive design without any external frameworks
 
-## 🚀 Sections
-
-- **Introduction** - Brief personal introduction with profile picture
-- **Links** - Quick access to contact information and professional profiles
-- **Experience** - Detailed work history and internships
-- **Education** - Academic background and achievements
-- **Technical Skills** - Comprehensive list of programming languages and technologies
-- **Coding Profiles** - Links to competitive programming profiles
 
 ## 💻 Local Development
 
@@ -50,21 +42,6 @@ Visit my portfolio at: [https://satyam1507.github.io/portfolio](https://satyam15
    python -m http.server
    # or using Python 2
    python -m SimpleHTTPServer
-   ```
-
-## 🔄 Updates
-
-To update the portfolio:
-
-1. Make changes to the relevant files
-2. Commit your changes
-   ```bash
-   git add .
-   git commit -m "Your update message"
-   ```
-3. Push to GitHub
-   ```bash
-   git push origin gh-pages
    ```
 
 ## 📱 Contact

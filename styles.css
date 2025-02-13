@@ -1,0 +1,659 @@
+/* Base styles with proper height handling */
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Code', Menlo, Monaco, 'Courier New', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  background: #f5f5f5; /* Default light mode background */
+  color: #111;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark mode classes */
+body.dark-mode {
+  background: #000; 
+  color: #eee;
+}
+
+a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+a:hover {
+  color: #000;
+}
+body.dark-mode a {
+  color: #aaa;
+}
+body.dark-mode a:hover {
+  color: #fff;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Header and Nav */
+header {
+  padding: 1rem;
+  background: #fff; /* Light mode: white navbar */
+  transition: background 0.3s ease;
+}
+body.dark-mode header {
+  background: #000; /* Dark mode: black navbar */
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Dark Mode Toggle on the left, Hamburger on the right */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  transition: color 0.3s ease;
+}
+.dark-mode-toggle:hover {
+  color: #111;
+}
+body.dark-mode .dark-mode-toggle {
+  color: #aaa;
+}
+body.dark-mode .dark-mode-toggle:hover {
+  color: #fff;
+}
+
+/* Hamburger */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background-color: #555;
+  transition: background-color 0.3s ease;
+}
+body.dark-mode .hamburger .bar {
+  background-color: #aaa;
+}
+
+.hamburger.open .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Mobile Navigation */
+@media (max-width: 600px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff; /* Light mode: white background */
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 999; /* Ensure above other elements */
+  }
+  .nav-links.open {
+    display: flex;
+  }
+
+  body.dark-mode .nav-links {
+    background: #111; /* Dark mode: dark background for menu */
+    box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+  }
+}
+
+/* Main and Footer */
+main {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+@media (max-width: 600px) {
+  main {
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+}
+
+footer {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #666;
+  padding-bottom: 2rem;
+  background: #fff; /* Footer matches light background */
+}
+body.dark-mode footer {
+  background: #000; /* Dark background in dark mode */
+  color: #777;
+}
+
+/* Intro Section */
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+.profile-pic:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .intro {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .intro img {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+  }
+}
+
+.description h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.description p {
+  font-size: 1rem;
+  color: #444;
+}
+body.dark-mode .description p {
+  color: #ccc;
+}
+
+/* Links Section */
+.links-section {
+  margin-top: 3rem;
+}
+.links-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.links-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+.link-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.link-item:hover {
+  transform: translateY(-2px);
+}
+.link-phone::before {
+  content: "📞";
+  margin-right: 0.5rem;
+}
+.link-email::before {
+  content: "📧";
+  margin-right: 0.5rem;
+}
+.link-github::before {
+  content: "💻";
+  margin-right: 0.5rem;
+}
+.link-linkedin::before {
+  content: "🔗";
+  margin-right: 0.5rem;
+}
+.link-resume::before {
+  content: "📄";
+  margin-right: 0.5rem;
+}
+.link-item {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  color: #333;
+}
+.link-item:hover {
+  background-color: #eee;
+  border-color: #ccc;
+  color: #111;
+}
+body.dark-mode .link-item {
+  background-color: #000;
+  border: 1px solid #222;
+  color: #aaa;
+}
+body.dark-mode .link-item:hover {
+  background-color: #111;
+  border-color: #333;
+  color: #fff;
+}
+
+/* Link Icons */
+.link-github::before {
+  content: "★";
+  margin-right: 0.5rem;
+  color: #555;
+}
+.link-linkedin::before {
+  content: "★";
+  margin-right: 0.5rem;
+  color: #0a66c2;
+}
+.link-phone::before {
+  content: "📞";
+  margin-right: 0.5rem;
+  color: #555;
+}
+.link-email::before {
+  content: "📧";
+  margin-right: 0.5rem;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  .links-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .link-item {
+    text-align: left;
+    padding: 0.7rem 0.7rem;
+  }
+}
+
+/* Projects Section */
+.projects-section {
+  margin-top: 3rem;
+}
+.projects-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.project {
+  margin-bottom: 2rem;
+}
+.project h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.project p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+body.dark-mode .project p {
+  color: #ccc;
+}
+.project a {
+  font-size: 0.9rem;
+  color: #555;
+  border-bottom: 1px dashed #555;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.project a:hover {
+  color: #000;
+  border-color: #000;
+}
+body.dark-mode .project a {
+  color: #aaa;
+  border-bottom-color: #aaa;
+}
+body.dark-mode .project a:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Book List */
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+.book-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+  transition: border-color 0.2s ease;
+}
+.book-item:hover {
+  border-color: #ccc;
+}
+body.dark-mode .book-item {
+  border-color: #222;
+}
+body.dark-mode .book-item:hover {
+  border-color: #333;
+}
+.book-cover {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #fff;
+}
+body.dark-mode .book-cover {
+  background: #111;
+}
+.book-details strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: #111;
+}
+body.dark-mode .book-details strong {
+  color: #eee;
+}
+.book-details p {
+  font-size: 0.95rem;
+  color: #444;
+}
+body.dark-mode .book-details p {
+  color: #ccc;
+}
+
+/* If not dark-mode, then light mode */
+body:not(.dark-mode) {
+  background: #f5f5f5;
+  color: #111;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #fff;
+}
+
+/* Light mode link colors */
+body:not(.dark-mode) a {
+  color: #555;
+}
+body:not(.dark-mode) a:hover {
+  color: #000;
+}
+
+/* Header, Footer: No background */
+header, footer {
+  background: none;
+}
+
+/* Nav Container */
+.nav-container {
+  max-width: 1200px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #eee;
+}
+.dark-mode-toggle:hover {
+  color: #fff;
+}
+
+/* Light mode toggle colors */
+body:not(.dark-mode) .dark-mode-toggle {
+  color: #555;
+}
+body:not(.dark-mode) .dark-mode-toggle:hover {
+  color: #111;
+}
+
+/* Hamburger */
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+.hamburger .bar {
+  width: 20px;
+  height: 2px;
+  background: #eee; /* visible in dark mode */
+}
+body:not(.dark-mode) .hamburger .bar {
+  background: #333; /* visible in light mode */
+}
+
+.hamburger.open .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Resume Styles */
+.resume-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.resume-container section {
+  margin-bottom: 2.5rem;
+}
+
+.resume-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.resume-container h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-info a {
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-info a:hover {
+  color: var(--primary-color);
+}
+
+.experience-item, .education-item, .project-item {
+  margin-bottom: 2rem;
+}
+
+.job-header, .education-info {
+  margin-bottom: 1rem;
+}
+
+.job-info, .education-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.experience-item h3, .education-item h3, .project-item h3 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.experience-item ul, .project-item ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.experience-item li, .project-item li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.skills .skill-group {
+  margin-bottom: 1rem;
+}
+
+.skill-group h3 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.skill-group p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.tech-stack {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-links a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.profile-links a:hover {
+  color: var(--primary-color);
+}
+
+.gpa, .grades {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .resume-container {
+    padding: 0 1rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .job-info, .education-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.resume-section {
+  padding: 4rem 0;
+  background-color: var(--bg-secondary);
+}
+
+section {
+  scroll-margin-top: 80px; /* This ensures the header doesn't overlap content when scrolling to anchors */
+}
